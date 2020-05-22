@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include <node_api.h>
+#include "common.h"
 
 namespace wnapi
 {
@@ -25,17 +26,7 @@ namespace wnapi
 
     napi_value init(napi_env env, napi_value exports)
     {
-        napi_status status;
-        napi_value fn_get_async_key_state;
-
-        status = napi_create_function(env, nullptr, 0, get_async_key_state, nullptr, &fn_get_async_key_state);
-        if (status != napi_ok)
-            return nullptr;
-
-        status = napi_set_named_property(env, exports, "getAsyncKeyState", fn_get_async_key_state);
-        if (status != napi_ok)
-            return nullptr;
-
+        export_function(env, exports, "getAsyncKeyState", get_async_key_state);
         return exports;
     }
 

@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include <node_api.h>
+#include "common.h"
 
 namespace wnapi
 {
@@ -25,25 +26,8 @@ namespace wnapi
 
     napi_value init(napi_env env, napi_value exports)
     {
-        napi_status status;
-        napi_value fn_get_current_thread_id;
-        napi_value fn_get_current_process_id;
-
-        status = napi_create_function(env, nullptr, 0, get_current_thread_id, nullptr, &fn_get_current_thread_id);
-        if (status != napi_ok)
-            return nullptr;
-
-        status = napi_set_named_property(env, exports, "getCurrentThreadId", fn_get_current_thread_id);
-        if (status != napi_ok)
-            return nullptr;
-
-        status = napi_create_function(env, nullptr, 0, get_current_process_id, nullptr, &fn_get_current_process_id);
-        if (status != napi_ok)
-            return nullptr;
-
-        status = napi_set_named_property(env, exports, "getCurrentProcessId", fn_get_current_process_id);
-        if (status != napi_ok)
-            return nullptr;
+        export_function(env, exports, "getCurrentThreadId", get_current_thread_id);
+        export_function(env, exports, "getCurrentProcessId", get_current_process_id);
 
         return exports;
     }
