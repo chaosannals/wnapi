@@ -1,0 +1,30 @@
+{
+  "name": "wnapi",
+  "version": "0.0.1",
+  "description": "windows node api.",
+  "scripts": {
+    "build": "node-gyp rebuild",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaosannals/wnapi.git"
+  },
+  "keywords": [
+    "windows",
+    "node",
+    "api"
+  ],
+  "author": {
+    "name": "chaosannals",
+    "email": "chaosannals@outlook.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chaosannals/wnapi/issues"
+  },
+  "homepage": "https://github.com/chaosannals/wnapi#readme",
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
+}
