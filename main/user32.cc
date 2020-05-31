@@ -14,13 +14,19 @@ namespace wnapi
 
         status = napi_get_cb_info(env, args, &argc, argv, 0, 0);
         if (status != napi_ok)
-            return nullptr;
+        {
+            throw_exception(env);
+        }
         status = napi_get_value_int32(env, argv[0], &key);
         if (status != napi_ok)
-            return nullptr;
+        {
+            throw_exception(env);
+        }
         status = napi_create_int32(env, GetAsyncKeyState(key), &result);
         if (status != napi_ok)
-            return nullptr;
+        {
+            throw_exception(env);
+        }
         return result;
     }
 
@@ -31,4 +37,4 @@ namespace wnapi
     }
 
     NAPI_MODULE(NODE_GYP_MODULE_NAME, init)
-}
+} // namespace wnapi
