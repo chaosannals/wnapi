@@ -1,5 +1,6 @@
-#include <Windows.h>
+﻿#include <Windows.h>
 #include <node_api.h>
+#include "exception.h"
 #include "common.h"
 
 namespace wnapi
@@ -10,7 +11,9 @@ namespace wnapi
         napi_status status;
         status = napi_create_int32(env, GetCurrentThreadId(), &result);
         if (status != napi_ok)
-            return nullptr;
+        {
+            throw wnapi_error(env);
+        }
         return result;
     }
 
@@ -20,7 +23,9 @@ namespace wnapi
         napi_status status;
         status = napi_create_int32(env, GetCurrentProcessId(), &result);
         if (status != napi_ok)
-            return nullptr;
+        {
+            throw wnapi_error(env);
+        }
         return result;
     }
 
