@@ -20,7 +20,8 @@
     "url": "https://github.com/chaosannals/wnapi/issues"
   },
   "homepage": "https://github.com/chaosannals/wnapi#readme",
-  "files": ["main", "binding.gyp"],
+  "main": "index.js",
+  "files": ["main", "index.js", "binding.gyp"],
   "dependencies": {
     "bindings": "^1.5.0"
   },
