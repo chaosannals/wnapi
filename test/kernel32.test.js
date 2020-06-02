@@ -9,3 +9,8 @@ test('get current process id', () => {
     let pid = kernel32.getCurrentProcessId();
     expect(pid).toBeGreaterThan(0);
 });
+
+test('find window.', () => {
+    let handle = kernel32.a.findWindow(null, null);
+    expect(handle).toBeGreaterThan(0);
+})
