@@ -1,4 +1,4 @@
-const kernel32 = require(__dirname + '/../build/Release/kernel32');
+const kernel32 = require('bindings')('kernel32.node');
 
 test('get current thread id', () => {
     let tid = kernel32.getCurrentThreadId();

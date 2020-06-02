@@ -1,4 +1,4 @@
-const user32 = require(__dirname + '/../build/Release/user32');
+const user32 = require('bindings')('user32.node');
 
 test('get async key status', () => {
     let state = user32.getAsyncKeyState(1);
