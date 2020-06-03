@@ -5,7 +5,12 @@ test('get async key status', () => {
     expect([0, 1, -32767]).toContain(state);
 });
 
-test('find window.', () => {
+test('find window a.', () => {
     let handle = user32.a.findWindow(null, null);
+    expect(handle).toBeGreaterThan(0);
+})
+
+test('find window w.', () => {
+    let handle = user32.w.findWindow(null, null);
     expect(handle).toBeGreaterThan(0);
 })
