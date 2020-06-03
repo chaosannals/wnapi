@@ -32,20 +32,6 @@ namespace wnapi
 
     napi_value init(napi_env env, napi_value exports)
     {
-        napi_value a;
-        napi_status status;
-        status = napi_create_object(env, &a);
-        if (status != napi_ok)
-        {
-            throw_exception(env);
-        }
-        export_function(env, a, "findWindow", a::find_window);
-        status = napi_set_named_property(env, exports, "a", a);
-        if (status != napi_ok)
-        {
-            throw_exception(env);
-        }
-
         export_function(env, exports, "getCurrentThreadId", get_current_thread_id);
         export_function(env, exports, "getCurrentProcessId", get_current_process_id);
 
