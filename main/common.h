@@ -46,6 +46,17 @@ namespace wnapi
         }
     }
 
+    napi_valuetype get_type(napi_env env, napi_value value)
+    {
+        napi_valuetype type;
+        napi_status status = napi_typeof(env, value, &type);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        return type;
+    }
+
     std::unique_ptr<char[]> get_utf8_string(napi_env env, napi_value text)
     {
         size_t length = 0;

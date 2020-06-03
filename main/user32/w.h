@@ -18,24 +18,14 @@ namespace wnapi
                 throw_exception(env);
             }
 
-            size_t length = 0;
             std::unique_ptr<wchar_t[]> classname;
-            napi_valuetype type;
-            status = napi_typeof(env, argv[0], &type);
-            if (status != napi_ok)
-            {
-                throw_exception(env);
-            }
+            napi_valuetype type = get_type(env, argv[0]);
             if (type == napi_string)
             {
                 classname = get_utf16_string(env, argv[0]);
             }
             std::unique_ptr<wchar_t[]> windowname;
-            status = napi_typeof(env, argv[1], &type);
-            if (status != napi_ok)
-            {
-                throw_exception(env);
-            }
+            type = get_type(env, argv[1]);
             if (type == napi_string)
             {
                 windowname = get_utf16_string(env, argv[1]);
