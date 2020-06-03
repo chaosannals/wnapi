@@ -2,6 +2,7 @@
 #define WNAPI_KERNEL32_A_H
 
 #include <memory>
+#include "../common.h"
 
 namespace wnapi
 {
@@ -28,15 +29,10 @@ namespace wnapi
             }
             if (type == napi_string)
             {
-                classname.reset(new char[1024]);
-                status = napi_get_value_string_utf8(env, argv[0], classname.get(), 1024, &length);
-                if (status != napi_ok)
-                {
-                    throw_exception(env);
-                }
+                classname = get_utf8_string(env, argv[0]);
             }
             std::unique_ptr<char[]> windowname;
-            status = napi_typeof(env, argv[0], &type);
+            status = napi_typeof(env, argv[1], &type);
             if (status != napi_ok)
             {
                 throw_exception(env);

@@ -2,6 +2,7 @@
 #include <node_api.h>
 #include "common.h"
 #include "kernel32/a.h"
+#include "kernel32/w.h"
 
 namespace wnapi
 {

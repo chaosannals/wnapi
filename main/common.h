@@ -1,6 +1,7 @@
 ﻿#ifndef WNAPI_COMMON_H
 #define WNAPI_COMMON_H
 
+#include <memory>
 #include <Windows.h>
 #include <node_api.h>
 
@@ -43,6 +44,43 @@ namespace wnapi
         {
             throw_exception(env);
         }
+    }
+
+    std::unique_ptr<char[]> get_utf8_string(napi_env env, napi_value text)
+    {
+        size_t length = 0;
+        napi_status status = napi_get_value_string_utf8(env, text, nullptr, 0, &length);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        std::unique_ptr<char[]> result(new char[length]);
+        status = napi_get_value_string_utf8(env, text, result.get(), length, &length);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        return result;
+    }
+
+    std::unique_ptr<wchar_t[]> get_utf16_string(napi_env env, napi_value text)
+    {
+        size_t length = 0;
+        napi_status status = napi_get_value_string_utf8(env, text, nullptr, 0, &length);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        std::unique_ptr<char[]> content(new char[length]);
+        status = napi_get_value_string_utf8(env, text, content.get(), length, &length);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        DWORD size = MultiByteToWideChar(CP_UTF8, 0, content.get(), length, NULL, 0);
+        std::unique_ptr<wchar_t[]> result(new wchar_t[size]);
+        MultiByteToWideChar(CP_UTF8, 0, content.get(), length, result.get(), size);
+        return result;
     }
 } // namespace wnapi
 
