@@ -18,18 +18,8 @@ namespace wnapi
                 throw_exception(env);
             }
 
-            std::unique_ptr<char[]> classname;
-            napi_valuetype type = get_type(env, argv[0]);
-            if (type == napi_string)
-            {
-                classname = get_utf8_string(env, argv[0]);
-            }
-            std::unique_ptr<char[]> windowname;
-            type = get_type(env, argv[1]);
-            if (type == napi_string)
-            {
-                windowname = get_utf8_string(env, argv[1]);
-            }
+            std::unique_ptr<char[]> classname = as_utf8_string(env, argv[0]);
+            std::unique_ptr<char[]> windowname = as_utf8_string(env, argv[1]);
 
             napi_value result;
             int64_t hwnd = reinterpret_cast<int64_t>(FindWindowA(classname.get(), windowname.get()));

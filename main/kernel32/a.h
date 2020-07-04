@@ -5,7 +5,6 @@ namespace wnapi
 {
     namespace a
     {
-        
     } // namespace a
 } // namespace wnapi
 
