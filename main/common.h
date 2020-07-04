@@ -46,6 +46,60 @@ namespace wnapi
         }
     }
 
+    /**
+     * 新建对象。
+     * 
+     */
+    napi_value new_object(napi_env env)
+    {
+        napi_value result;
+        napi_status status = napi_create_object(env, &result);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        return result;
+    }
+
+    napi_value new_int32(napi_env env, int32_t value)
+    {
+        napi_value result;
+        napi_status status = napi_create_int32(env, value, &result);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        return result;
+    }
+
+    napi_value new_int64(napi_env env, int64_t value)
+    {
+        napi_value result;
+        napi_status status = napi_create_int64(env, value, &result);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        return result;
+    }
+
+    /**
+     * 设置属性。
+     * 
+     */
+    void set_property(napi_env env, napi_value target, const char *name, napi_value value)
+    {
+        napi_status status = napi_set_named_property(env, target, name, value);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+    }
+
+    /**
+     * 解析参数。
+     * 
+     */
     void parse_argument(napi_env env, napi_callback_info args, size_t *argc, napi_value *argv)
     {
         napi_status status = napi_get_cb_info(env, args, argc, argv, 0, 0);

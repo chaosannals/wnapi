@@ -5,28 +5,21 @@
 
 namespace wnapi
 {
+    /**
+     * 获取当前线程 ID
+     */
     napi_value get_current_thread_id(napi_env env, napi_callback_info args)
     {
-        napi_value result;
-        napi_status status;
-        status = napi_create_int32(env, GetCurrentThreadId(), &result);
-        if (status != napi_ok)
-        {
-            throw_exception(env);
-        }
-        return result;
+        return new_int32(env, GetCurrentThreadId());
     }
 
+    /**
+     * 获取当前进程 ID
+     * 
+     */
     napi_value get_current_process_id(napi_env env, napi_callback_info args)
     {
-        napi_value result;
-        napi_status status;
-        status = napi_create_int32(env, GetCurrentProcessId(), &result);
-        if (status != napi_ok)
-        {
-            throw_exception(env);
-        }
-        return result;
+        return new_int32(env,GetCurrentProcessId());
     }
 } // namespace wnapi
 
