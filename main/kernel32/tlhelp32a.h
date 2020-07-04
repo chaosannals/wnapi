@@ -1,4 +1,4 @@
-#ifndef WNAPI_KERNEL32_TLHELP32_A_H
+﻿#ifndef WNAPI_KERNEL32_TLHELP32_A_H
 #define WNAPI_KERNEL32_TLHELP32_A_H
 
 #include <tlhelp32.h>
