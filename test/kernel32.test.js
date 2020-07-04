@@ -9,3 +9,9 @@ test('get current process id', () => {
     let pid = kernel32.getCurrentProcessId();
     expect(pid).toBeGreaterThan(0);
 });
+
+test('tlhelp', () => {
+    let handle = kernel32.createToolhelp32Snapshot(2, 0);
+    let info1 = kernel32.a.process32First(handle);
+    let info2 = kernel32.a.process32Next(handle);
+});

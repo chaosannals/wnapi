@@ -6,7 +6,7 @@
 
 namespace wnapi
 {
-    napi_value createToolhelp32Snapshot(napi_env env, napi_callback_info args)
+    napi_value create_toolhelp32_snapshot(napi_env env, napi_callback_info args)
     {
         size_t argc = 2;
         napi_value argv[2];

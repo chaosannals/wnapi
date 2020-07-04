@@ -46,6 +46,17 @@ namespace wnapi
         }
     }
 
+    napi_value the_null(napi_env env)
+    {
+        napi_value result;
+        napi_status status = napi_get_null(env, &result);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        return result;
+    }
+
     /**
      * 新建对象。
      * 
@@ -128,6 +139,17 @@ namespace wnapi
     {
         int32_t result;
         napi_status status = napi_get_value_int32(env, value, &result);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        return result;
+    }
+
+    int64_t get_int64(napi_env env, napi_value value)
+    {
+        int64_t result;
+        napi_status status = napi_get_value_int64(env, value, &result);
         if (status != napi_ok)
         {
             throw_exception(env);
