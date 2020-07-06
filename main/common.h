@@ -72,6 +72,17 @@ namespace wnapi
         return result;
     }
 
+    napi_value new_array(napi_env env)
+    {
+        napi_value result;
+        napi_status status = napi_create_array(env, &result);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        return result;
+    }
+
     napi_value new_int32(napi_env env, int32_t value)
     {
         napi_value result;
@@ -94,6 +105,17 @@ namespace wnapi
         return result;
     }
 
+    napi_value get_property(napi_env env, napi_value target, const char *name)
+    {
+        napi_value result;
+        napi_status status = napi_get_named_property(env, target, name, &result);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        return result;
+    }
+
     /**
      * 设置属性。
      * 
@@ -105,6 +127,26 @@ namespace wnapi
         {
             throw_exception(env);
         }
+    }
+
+    void set_element(napi_env env, napi_value target, uint32_t index, napi_value value)
+    {
+        napi_status status = napi_set_element(env, target, index, value);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+    }
+
+    napi_value call_function(napi_env env, napi_value recv, napi_value func, size_t argc, const napi_value *argv)
+    {
+        napi_value result;
+        napi_status status = napi_call_function(env, recv, func, argc, argv, &result);
+        if (status != napi_ok)
+        {
+            throw_exception(env);
+        }
+        return result;
     }
 
     /**

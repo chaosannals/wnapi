@@ -10,6 +10,10 @@ test('get current process id', () => {
     expect(pid).toBeGreaterThan(0);
 });
 
+test('psapi', () => {
+    let ids = kernel32.enumProcesses();
+});
+
 test('tlhelp', () => {
     let handle = kernel32.createToolhelp32Snapshot(2, 0);
     let info1 = kernel32.a.process32First(handle);
